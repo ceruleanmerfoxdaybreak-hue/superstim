@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  font-family:monospace;
+  color:#00ffcc;
+}
+
+.letter{
+  position:absolute;
+  font-size:28px;
+  user-select:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+const text = "SPOON FACTORY";
+const letters = [];
+const radius = 120;
+let angle = 0;
+
+text.split("").forEach((char,i)=>{
+
+  const span = document.createElement("span");
+  span.className="letter";
+  span.textContent = char;
+
+  document.body.appendChild(span);
+
+  letters.push({
+    el:span,
+    offset:i*0.4
+  });
+
+});
+
+function animate(){
+
+  angle += 0.02;
+
+  const cx = window.innerWidth/2;
+  const cy = window.innerHeight/2;
+
+  letters.forEach((letter,i)=>{
+
+    const a = angle + letter.offset;
+
+    const swirlX = Math.cos(a) * radius;
+    const swirlY = Math.sin(a) * radius;
+
+    const waveY = Math.sin(angle*2 + i*0.5) * 40;
+
+    letter.el.style.left = cx + swirlX + "px";
+    letter.el.style.top = cy + swirlY + waveY + "px";
+
+  });
+
+  requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
