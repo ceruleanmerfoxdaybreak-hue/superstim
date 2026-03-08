@@ -235,8 +235,10 @@ let selectedGroup2 = null;
 const output = document.getElementById("output");
 
 // 🔊 haptic-style vibration (if supported)
-function vibrate(ms = 30) {
-  if (navigator.vibrate) navigator.vibrate(ms);
+function vibrate(pattern = [20, 30, 20]) {
+  if ("vibrate" in navigator) {
+    navigator.vibrate(pattern);
+  }
 }
 
 // ✨ combo flash effect
@@ -259,7 +261,6 @@ function updateOutput() {
     output.textContent = messages[key] || "";
 
     flashOutput();
-    vibrate(40);
   }
 }
 
@@ -288,13 +289,15 @@ function handlePress(button) {
 document.querySelectorAll(".btn").forEach(button => {
 
   button.addEventListener("touchstart", (e) => {
+    vibrate();          // trigger immediately on touch
     handlePress(button);
   }, { passive: true });
 
-  // fallback for desktop
   button.addEventListener("click", () => {
+    vibrate();          // desktop / android fallback
     handlePress(button);
   });
+
 });
 </script>
 </body>
