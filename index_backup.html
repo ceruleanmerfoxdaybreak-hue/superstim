@@ -61,11 +61,31 @@ table {
 
 #fire {
   color: red;
+  line-height: 1.05;
   text-shadow:
-    0 0 4px orange,
-    0 0 8px red,
-    0 0 12px orange;
-  transition: text-shadow 0.1s;
+    0 0 6px orange,
+    0 0 12px red,
+    0 0 18px orange;
+  transition: text-shadow 0.08s linear;
+}
+
+.ember {
+  position: absolute;
+  color: orange;
+  pointer-events: none;
+  font-family: monospace;
+  animation: emberRise linear forwards;
+}
+
+@keyframes emberRise {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
 }
   .button-row {
     display: flex;
@@ -307,32 +327,61 @@ document.querySelectorAll(".btn").forEach(button => {
   });
 
 });
+const fire = document.getElementById("fire");
 
-	const fire = document.getElementById("fire");
+let baseFire = fire.textContent.split("\n");
 
-const flameChars = [".", "'", "*", "✳", " "];
+const flameChars = [".","'","*","✳"," "];
 
 function animateFire() {
 
-  let text = fire.textContent.split("");
+  let newLines = [...baseFire];
 
-  for (let i = 0; i < text.length; i++) {
+  for (let y = newLines.length - 1; y > 0; y--) {
 
-    const c = text[i];
+    let row = newLines[y].split("");
+    let rowAbove = newLines[y-1].split("");
 
-    // only animate flame characters
-    if ([".", "'", "*", "✳"].includes(c) && Math.random() < 0.15) {
+    for (let x = 0; x < row.length; x++) {
 
-      text[i] = flameChars[Math.floor(Math.random() * flameChars.length)];
+      const c = row[x];
+
+      if ([".","'","*","✳"].includes(c)) {
+
+        // upward flame flow
+        if (Math.random() < 0.25 && rowAbove[x]) {
+          rowAbove[x] = flameChars[Math.floor(Math.random()*4)];
+        }
+
+        // shimmer sideways
+        if (Math.random() < 0.15) {
+
+          let shift = Math.random() < 0.5 ? -1 : 1;
+
+          if (row[x+shift]) {
+            row[x+shift] = row[x];
+          }
+
+        }
+
+        // flicker
+        if (Math.random() < 0.20) {
+          row[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
+        }
+
+      }
 
     }
 
+    newLines[y] = row.join("");
+    newLines[y-1] = rowAbove.join("");
+
   }
 
-  fire.textContent = text.join("");
+  fire.textContent = newLines.join("\n");
 
-  // flicker brightness
-  const glow = Math.random() * 20 + 5;
+  // glow flicker
+  const glow = 6 + Math.random()*20;
 
   fire.style.textShadow =
     `0 0 ${glow}px orange,
@@ -340,8 +389,31 @@ function animateFire() {
      0 0 ${glow*2}px yellow`;
 }
 
-// run continuously
-setInterval(animateFire, 80);
+setInterval(animateFire, 90);
+
+  function createEmber() {
+
+  const ember = document.createElement("span");
+
+  ember.className = "ember";
+  ember.textContent = ["*","✦","✧","·"][Math.floor(Math.random()*4)];
+
+  const rect = fire.getBoundingClientRect();
+
+  ember.style.left = rect.left + Math.random()*rect.width + "px";
+  ember.style.top = rect.bottom - 20 + "px";
+
+  ember.style.animationDuration = (2 + Math.random()*2) + "s";
+  ember.style.fontSize = (12 + Math.random()*10) + "px";
+
+  document.body.appendChild(ember);
+
+  setTimeout(()=> ember.remove(),4000);
+
+}
+
+setInterval(createEmber,300);
+	
 </script>
 </body>
 </html>
