@@ -38,6 +38,19 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+#ascii-art span {
+  display: inline-block;
+  animation: shimmer 2s infinite;
+}
+
+/* shimmer glow */
+@keyframes shimmer {
+  0%   { color: red; transform: rotate(0deg); }
+  25%  { color: orange; transform: rotate(3deg); }
+  50%  { color: yellow; transform: rotate(0deg); }
+  75%  { color: orange; transform: rotate(-3deg); }
+  100% { color: red; transform: rotate(0deg); }
+}
 body {
 	line-height: 1;
 }
@@ -171,7 +184,7 @@ table {
 </td>
 </tr>
 </table>
-<pre>
+<pre id="ascii-art">
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ ) ◠◠◠◠◠◠◠◠◠◠ ( ' ' ) ◠◠◠◠◠◠◠◠◠◠
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ (.) ◠◠◠◠◠◠◠◠◠◠◠◠ * ◠◠◠◠◠◠◠◠◠◠◠◠◠
                        ,         ( ' ) ◠◠◠◠◠◠◠◠◠)/./(◠◠◠◠◠◠◠◠◠
@@ -298,6 +311,20 @@ document.querySelectorAll(".btn").forEach(button => {
     handlePress(button);
   });
 
+});
+const ascii = document.getElementById("ascii-art");
+
+const text = ascii.textContent;
+ascii.innerHTML = "";
+
+[...text].forEach((char, i) => {
+  const span = document.createElement("span");
+  span.textContent = char;
+
+  // stagger animation so it ripples
+  span.style.animationDelay = (i * 0.02) + "s";
+
+  ascii.appendChild(span);
 });
 </script>
 </body>
