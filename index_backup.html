@@ -331,7 +331,7 @@ const fire = document.getElementById("fire");
 
 let baseFire = fire.textContent.split("\n");
 
-const flameChars = [".","'","*","✳"," "];
+const flameChars = [".","'","✳"]; // no blank spaces
 
 function animateFire() {
 
@@ -346,29 +346,32 @@ function animateFire() {
 
       const c = row[x];
 
-      if ([".","'","*","✳"].includes(c)) {
+      // only animate small flame particles
+      if ([".","'","✳"].includes(c)) {
 
-        // upward flame flow
-        if (Math.random() < 0.25 && rowAbove[x]) {
-          rowAbove[x] = flameChars[Math.floor(Math.random()*4)];
+        // upward flow (slower + gentler)
+        if (Math.random() < 0.12 && rowAbove[x]) {
+          rowAbove[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
         }
 
-        // shimmer sideways
-        if (Math.random() < 0.15) {
-
+        // slight sideways shimmer
+        if (Math.random() < 0.08) {
           let shift = Math.random() < 0.5 ? -1 : 1;
-
-          if (row[x+shift]) {
+          if (row[x+shift] && row[x+shift] !== "*") {
             row[x+shift] = row[x];
           }
-
         }
 
-        // flicker
-        if (Math.random() < 0.20) {
+        // soft flicker (never erase)
+        if (Math.random() < 0.10) {
           row[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
         }
 
+      }
+
+      // protect all important stars (eyes + fire stars)
+      if (c === "*") {
+        row[x] = "*";
       }
 
     }
@@ -380,16 +383,17 @@ function animateFire() {
 
   fire.textContent = newLines.join("\n");
 
-  // glow flicker
-  const glow = 6 + Math.random()*20;
+  // slower glow breathing
+  const glow = 8 + Math.random()*10;
 
   fire.style.textShadow =
     `0 0 ${glow}px orange,
-     0 0 ${glow*1.5}px red,
-     0 0 ${glow*2}px yellow`;
+     0 0 ${glow*1.6}px red,
+     0 0 ${glow*2.2}px yellow`;
 }
 
-setInterval(animateFire, 90);
+// slower fire update
+setInterval(animateFire, 200);
 
   function createEmber() {
 
