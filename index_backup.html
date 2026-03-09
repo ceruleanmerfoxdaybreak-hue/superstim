@@ -59,6 +59,14 @@ table {
 
 /* end css reset */
 
+#fire {
+  color: red;
+  text-shadow:
+    0 0 4px orange,
+    0 0 8px red,
+    0 0 12px orange;
+  transition: text-shadow 0.1s;
+}
   .button-row {
     display: flex;
     justify-content: left;
@@ -171,7 +179,7 @@ table {
 </td>
 </tr>
 </table>
-<pre>
+<pre id="fire">
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ ) ◠◠◠◠◠◠◠◠◠◠ ( ' ' ) ◠◠◠◠◠◠◠◠◠◠
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ (.) ◠◠◠◠◠◠◠◠◠◠◠◠ * ◠◠◠◠◠◠◠◠◠◠◠◠◠
                        ,         ( ' ) ◠◠◠◠◠◠◠◠◠)/./(◠◠◠◠◠◠◠◠◠
@@ -299,6 +307,41 @@ document.querySelectorAll(".btn").forEach(button => {
   });
 
 });
+
+	const fire = document.getElementById("fire");
+
+const flameChars = [".", "'", "*", "✳", " "];
+
+function animateFire() {
+
+  let text = fire.textContent.split("");
+
+  for (let i = 0; i < text.length; i++) {
+
+    const c = text[i];
+
+    // only animate flame characters
+    if ([".", "'", "*", "✳"].includes(c) && Math.random() < 0.15) {
+
+      text[i] = flameChars[Math.floor(Math.random() * flameChars.length)];
+
+    }
+
+  }
+
+  fire.textContent = text.join("");
+
+  // flicker brightness
+  const glow = Math.random() * 20 + 5;
+
+  fire.style.textShadow =
+    `0 0 ${glow}px orange,
+     0 0 ${glow*1.5}px red,
+     0 0 ${glow*2}px yellow`;
+}
+
+// run continuously
+setInterval(animateFire, 80);
 </script>
 </body>
 </html>
