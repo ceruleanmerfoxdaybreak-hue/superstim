@@ -255,6 +255,90 @@ document.querySelectorAll(".btn").forEach(button => {
   });
 
 });
+
+  const art = document.getElementById("ascii-art");
+
+const baseLines = art.textContent.split("\n");
+
+let frame = 0;
+
+function draw(lines){
+  art.textContent = lines.join("\n");
+}
+
+  function animateFlames(lines){
+
+  const flameChars = [".","'","*"];
+
+  for(let y=0;y<lines.length;y++){
+
+    let row = lines[y].split("");
+
+    for(let x=0;x<row.length;x++){
+
+      if([".","'","*"].includes(row[x])){
+
+        if(Math.random() < 0.15){
+          row[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
+        }
+
+      }
+
+    }
+
+    lines[y] = row.join("");
+  }
+
+}
+  function animateHorses(lines){
+
+  if(frame % 2 === 0){
+
+    lines = lines.map(l =>
+      l.replace("(<>*<>)","(<*><*>)")
+    );
+
+  } else {
+
+    lines = lines.map(l =>
+      l.replace("(<*><*>)","(<>*<>)")
+    );
+
+  }
+
+  return lines;
+
+}
+  function animateWheels(lines){
+
+  const wheels = ["/-\\","|.|","\\-/","|.|"];
+
+  const wheel = wheels[frame % wheels.length];
+
+  lines = lines.map(l =>
+    l.replace("/.\\",wheel)
+  );
+
+  return lines;
+
+}
+  function animateScene(){
+
+  let lines = [...baseLines];
+
+  animateFlames(lines);
+
+  lines = animateHorses(lines);
+
+  lines = animateWheels(lines);
+
+  draw(lines);
+
+  frame++;
+
+}
+
+setInterval(animateScene,180);
   
 </script>
 </body>
