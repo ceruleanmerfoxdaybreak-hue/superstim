@@ -70,12 +70,6 @@
   animation: flashAnim 0.3s ease;
 }
 
-@keyframes flashAnim {
-  0%   { transform: scale(1); opacity: 1; }
-  50%  { transform: scale(1.2); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
 /* 📱 improve touch reliability */
 .btn {
   touch-action: manipulation;
@@ -92,15 +86,6 @@
     0 0 12px red,
     0 0 18px orange;
   transition: text-shadow 0.08s linear;
-}
-
-/* shimmer glow */
-@keyframes shimmer {
-  0%   { color: red; transform: rotate(0deg); }
-  25%  { color: orange; transform: rotate(3deg); }
-  50%  { color: yellow; transform: rotate(0deg); }
-  75%  { color: orange; transform: rotate(-3deg); }
-  100% { color: red; transform: rotate(0deg); }
 }
 
 </style>
@@ -270,20 +255,7 @@ document.querySelectorAll(".btn").forEach(button => {
   });
 
 });
-const ascii = document.getElementById("ascii-art");
-
-const text = ascii.textContent;
-ascii.innerHTML = "";
-
-[...text].forEach((char, i) => {
-  const span = document.createElement("span");
-  span.textContent = char;
-
-  // stagger animation so it ripples
-  span.style.animationDelay = (i * 0.02) + "s";
-
-  ascii.appendChild(span);
-});
+  
 </script>
 </body>
 </html>
