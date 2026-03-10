@@ -339,7 +339,43 @@ function draw(lines){
 }
 
 setInterval(animateScene,180);
-  
+  const art = document.getElementById("ascii-art");
+
+const baseLines = art.textContent.split("\n");
+
+let frame = 0;
+
+function animateScene(){
+
+  let lines = baseLines.map(line => line.split(""));
+
+  for(let y=0;y<lines.length;y++){
+    for(let x=0;x<lines[y].length;x++){
+
+      let c = lines[y][x];
+
+      // flame flicker
+      if(c === "." || c === "'" || c === "*"){
+
+        if(Math.random() < 0.15){
+
+          const flame = [".","'","*"];
+          lines[y][x] = flame[Math.floor(Math.random()*flame.length)];
+
+        }
+
+      }
+
+    }
+  }
+
+  art.textContent = lines.map(r => r.join("")).join("\n");
+
+  frame++;
+
+}
+
+setInterval(animateScene,200);
 </script>
 </body>
 </html>
