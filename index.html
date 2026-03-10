@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="https://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head title="YEAR OF THE FIRE HORSE - FORTUNE TELLER CODE CHARM">
+<head title="YEAR OF THE FIRE HORSE - ENTER THE CHARIOT">
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -9,6 +9,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
+#fire {
+  color: red;
+  line-height: 1.05;
+  text-shadow:
+    0 0 6px orange,
+    0 0 12px red,
+    0 0 18px orange;
+  transition: text-shadow 0.08s linear;
+}
+#title2 {
+  color: red;
+  line-height: 1.05;
+  text-shadow:
+    0 0 6px orange,
+    0 0 12px orange;
+  transition: text-shadow 0.08s linear;
+}
+
+  #title1 {
+  color: red;
+  line-height: 1.05;
+  text-shadow:
+    0 0 6px orange,
+    0 0 12px orange;
+  transition: text-shadow 0.08s linear;
+}
+
+.ember {
+  position: absolute;
+  color: orange;
+  pointer-events: none;
+  font-family: monospace;
+  animation: emberRise linear forwards;
+}
+
+@keyframes emberRise {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
   .button-row {
     display: flex;
     justify-content: left;
@@ -70,31 +115,25 @@
   animation: flashAnim 0.3s ease;
 }
 
+@keyframes flashAnim {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* 📱 improve touch reliability */
 .btn {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
-  #ascii-art span {
-  display: inline-block;
-  animation: shimmer 2s infinite;
-  color: red;
-  line-height: 1.05;
-  text-shadow:
-    0 0 6px orange,
-    0 0 12px red,
-    0 0 18px orange;
-  transition: text-shadow 0.08s linear;
-}
-
 </style>
 </head>
 <body bgcolor="yellow">
 <font color="red">
 <b>
 <p style="font-size: 35px; color: red; font-size: 24px; font-weight: bold;">
-<pre>
+<pre id="title1">
    2026 {4724} ∴ YEAR OF THE FIRE HORSE ∴ ENTER THE FIRE CHARIOT
 </pre>
 </p>
@@ -114,7 +153,7 @@
   </div>
 </div>
 <p>
-<pre>
+<pre id="title2">
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ ) ◠◠◠◠◠◠◠◠◠◠◠◠◠
    CHOOSE ONE LETTER & ONE NUMBER FOR A MESSAGE   (.)
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠( ' )◠◠◠◠◠◠◠◠◠◠◠◠
@@ -127,22 +166,22 @@
 </td>
 </tr>
 </table>
-<pre id="ascii-art">
+<pre id="fire">
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ ) ◠◠◠◠◠◠◠◠◠◠ ( ' ' ) ◠◠◠◠◠◠◠◠◠◠
 ◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠◠ (.) ◠◠◠◠◠◠◠◠◠◠◠◠ * ◠◠◠◠◠◠◠◠◠◠◠◠◠
                        ,         ( ' ) ◠◠◠◠◠◠◠◠◠)/./(◠◠◠◠◠◠◠◠◠
            )           )        ( ' ' )  ◠◠◠◠◠◠)/./(◠◠◠◠◠◠
-          (.)         (.)          *     ◠◠◠◠◠)/./(◠◠◠◠◠
+          (.)         (.)          ✳     ◠◠◠◠◠)/./(◠◠◠◠◠
          ( ' )       ( , )                ◠◠◠)/./(◠◠◠
         ( ' ' )                            ◠◠/./◠◠
-           *                 ,\/^ツ/)      ◠/./◠
+           ✳                 ,\/^ツ/)      ◠/./◠
                 ,            (&lt;*&gt;&lt;*&gt;)     ◠/./◠         )
                 )            {(c|p)'}     /./          (,)
      )         (.)           '\=†=//`    /./          ( , )
     (.)       ( , )        ,---/  \---. /./        )  
    ( ' )                  /     - -    \./        (.) 
   ( ' ' )                /  \_. _|__,/  \        ( , )  
-     *                  /  )\        )\_ \ gnv             
+     ✳                  /  )\        )\_ \ gnv             
                        / _/  (  ('  ) /  /        )         
                   (   / |     (_)___) | /   (     (
              (    )  /,' (  ' /(    \/ /,   )  )  (  (
@@ -255,7 +294,97 @@ document.querySelectorAll(".btn").forEach(button => {
   });
 
 });
-  
+const fire = document.getElementById("fire");
+
+let baseFire = fire.textContent.split("\n");
+
+const flameChars = [".","'","✳"]; // no blank spaces
+
+function animateFire() {
+
+  let newLines = [...baseFire];
+
+  for (let y = newLines.length - 1; y > 0; y--) {
+
+    let row = newLines[y].split("");
+    let rowAbove = newLines[y-1].split("");
+
+    for (let x = 0; x < row.length; x++) {
+
+      const c = row[x];
+
+      // only animate small flame particles
+      if ([".","'","✳"].includes(c)) {
+
+        // upward flow (slower + gentler)
+        if (Math.random() < 0.12 && rowAbove[x]) {
+          rowAbove[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
+        }
+
+        // slight sideways shimmer
+        if (Math.random() < 0.08) {
+          let shift = Math.random() < 0.5 ? -1 : 1;
+          if (row[x+shift] && row[x+shift] !== "*") {
+            row[x+shift] = row[x];
+          }
+        }
+
+        // soft flicker (never erase)
+        if (Math.random() < 0.10) {
+          row[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
+        }
+
+      }
+
+      // protect all important stars (eyes + fire stars)
+      if (c === "*") {
+        row[x] = "*";
+      }
+
+    }
+
+    newLines[y] = row.join("");
+    newLines[y-1] = rowAbove.join("");
+
+  }
+
+  fire.textContent = newLines.join("\n");
+
+  // slower glow breathing
+  const glow = 8 + Math.random()*10;
+
+  fire.style.textShadow =
+    `0 0 ${glow}px orange,
+     0 0 ${glow*1.6}px red,
+     0 0 ${glow*2.2}px yellow`;
+}
+
+// slower fire update
+setInterval(animateFire, 200);
+
+  function createEmber() {
+
+  const ember = document.createElement("span");
+
+  ember.className = "ember";
+  ember.textContent = ["*","✦","✧","·"][Math.floor(Math.random()*4)];
+
+  const rect = fire.getBoundingClientRect();
+
+  ember.style.left = rect.left + Math.random()*rect.width + "px";
+  ember.style.top = rect.bottom - 20 + "px";
+
+  ember.style.animationDuration = (2 + Math.random()*2) + "s";
+  ember.style.fontSize = (12 + Math.random()*10) + "px";
+
+  document.body.appendChild(ember);
+
+  setTimeout(()=> ember.remove(),4000);
+
+}
+
+setInterval(createEmber,300);
+	
 </script>
 </body>
 </html>
