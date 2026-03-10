@@ -315,7 +315,7 @@ function animateFire() {
       const c = row[x];
 
       // only animate small flame particles
-      if ([".","'","*"].includes(c)) {
+      if ([".","'"].includes(c)) {
 
         // upward flow (slower + gentler)
         if (Math.random() < 0.12 && rowAbove[x]) {
