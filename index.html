@@ -76,7 +76,7 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
-  #ascii-art span {
+  #ascii-art pre {
   display: inline-block;
   animation: shimmer 2s infinite;
   color: red;
@@ -255,127 +255,7 @@ document.querySelectorAll(".btn").forEach(button => {
   });
 
 });
-
-  const art = document.getElementById("ascii-art");
-
-const baseLines = art.textContent.split("\n");
-
-let frame = 0;
-
-function draw(lines){
-  art.textContent = lines.join("\n");
-}
-
-  function animateFlames(lines){
-
-  const flameChars = [".","'","*"];
-
-  for(let y=0;y<lines.length;y++){
-
-    let row = lines[y].split("");
-
-    for(let x=0;x<row.length;x++){
-
-      if([".","'","*"].includes(row[x])){
-
-        if(Math.random() < 0.15){
-          row[x] = flameChars[Math.floor(Math.random()*flameChars.length)];
-        }
-
-      }
-
-    }
-
-    lines[y] = row.join("");
-  }
-
-}
-  function animateHorses(lines){
-
-  if(frame % 2 === 0){
-
-    lines = lines.map(l =>
-      l.replace("(<>*<>)","(<*><*>)")
-    );
-
-  } else {
-
-    lines = lines.map(l =>
-      l.replace("(<*><*>)","(<>*<>)")
-    );
-
-  }
-
-  return lines;
-
-}
-  function animateWheels(lines){
-
-  const wheels = ["/-\\","|.|","\\-/","|.|"];
-
-  const wheel = wheels[frame % wheels.length];
-
-  lines = lines.map(l =>
-    l.replace("/.\\",wheel)
-  );
-
-  return lines;
-
-}
-  function animateScene(){
-
-  let lines = [...baseLines];
-
-  animateFlames(lines);
-
-  lines = animateHorses(lines);
-
-  lines = animateWheels(lines);
-
-  draw(lines);
-
-  frame++;
-
-}
-
-setInterval(animateScene,180);
-  const art = document.getElementById("ascii-art");
-
-const baseLines = art.textContent.split("\n");
-
-let frame = 0;
-
-function animateScene(){
-
-  let lines = baseLines.map(line => line.split(""));
-
-  for(let y=0;y<lines.length;y++){
-    for(let x=0;x<lines[y].length;x++){
-
-      let c = lines[y][x];
-
-      // flame flicker
-      if(c === "." || c === "'" || c === "*"){
-
-        if(Math.random() < 0.15){
-
-          const flame = [".","'","*"];
-          lines[y][x] = flame[Math.floor(Math.random()*flame.length)];
-
-        }
-
-      }
-
-    }
-  }
-
-  art.textContent = lines.map(r => r.join("")).join("\n");
-
-  frame++;
-
-}
-
-setInterval(animateScene,200);
+  
 </script>
 </body>
 </html>
